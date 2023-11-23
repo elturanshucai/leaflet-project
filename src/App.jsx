@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
-import "Leaflet/dist/leaflet.css"
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+import { Icon } from "leaflet"
 
 function App() {
   const [map, setMap] = useState(null)
@@ -11,6 +12,11 @@ function App() {
   const [currentLoc, setCurrentLoc] = useState(null)
 
   const mapRef = useRef()
+
+  const customIcon = new Icon({
+    iconUrl: "/marker-icon.png",
+    iconSize: [38, 38]
+  })
 
   const handleClick = (e) => {
     setPosition({
@@ -53,7 +59,6 @@ function App() {
       <MapContainer
         center={[48.86, 2.3522]}
         zoom={13}
-        scrollWheelZoom={false}
         whenReady={(map) => setMap(map)}
         ref={mapRef}
       >
@@ -61,7 +66,7 @@ function App() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={{ lat: position.lat, lng: position.lng }}>
+        <Marker position={{ lat: position.lat, lng: position.lng }} icon={customIcon}>
           <Popup>Selected Location</Popup>
         </Marker>
       </MapContainer>
