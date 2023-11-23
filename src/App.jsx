@@ -2,23 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import "Leaflet/dist/leaflet.css"
 
-function LocationMarker({ position, setPosition }) {
-  const currentLoc = useMapEvents({
-    mouseover() {
-      currentLoc.locate()
-    },
-    locationfound(e) {
-      setPosition(e.latlng)
-      currentLoc.flyTo(e.latlng, currentLoc.getZoom())
-    },
-  })
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  )
-}
-
 function App() {
   const [map, setMap] = useState(null)
   const [position, setPosition] = useState({
