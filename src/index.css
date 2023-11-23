@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.leaflet-container {
+    height: 100vh;
+    z-index: 1;
+}
+
+.myLocate {
+    background-color: blue;
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    z-index: 2;
+    color: white;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    border: none;
+    outline: 5px solid #32a1ce;
+    cursor: pointer;
+}
